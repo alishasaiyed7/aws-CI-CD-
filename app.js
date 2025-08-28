@@ -3,6 +3,7 @@ const app = express();
 
 app.get("/", (req, res) => {
   res.send("Hello from GitHub Actions CI/CD Pipeline!");
+  res.send("Working from GitHub Actions CI/CD Pipeline!");
 });
 
 const port = process.env.PORT || 3000;
