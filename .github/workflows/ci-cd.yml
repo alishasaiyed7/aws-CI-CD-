@@ -45,4 +45,18 @@ jobs:
             cd /home/ubuntu/aws-CI-CD- || git clone https://github.com/alishasaiyed7/aws-devops-projects-basic.git /home/ubuntu/aws-CI-CD-
             git pull origin main
             npm install
-            pm2 restart app || pm2 start app.js --name "ci-cd-app"
+            
+            if ! command -v pm2 &> /dev/null; then
+              sudo npm install -g pm2
+            fi
+
+            # Start or restart the app
+            pm2 describe ci-cd-app &> /dev/null
+            if [ $? -eq 0 ]; then
+              pm2 restart ci-cd-app --update-env
+            else
+              pm2 start app.js --name "ci-cd-app"
+            fi
+
+            # Save PM2 list for auto startup
+            pm2 save
