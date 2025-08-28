@@ -42,7 +42,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           port: 22
           script: |
-            /home/ubuntu/aws-CI-CD- || git clone https://github.com/alishasaiyed7/aws-devops-projects-basic.git /home/ubuntu/aws-CI-CD-
+            cd /home/ubuntu/aws-CI-CD- || git clone https://github.com/alishasaiyed7/aws-devops-projects-basic.git /home/ubuntu/aws-CI-CD-
             git pull origin main
             npm install
             sudo npm install -g pm2
